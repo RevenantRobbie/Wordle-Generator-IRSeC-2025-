@@ -1,1 +1,3 @@
 It's wordle man, what else you want from me?
+
+WARNING: THIS SCRIPT CURRENTLY CANNOT GENERATE WORDLES FOR LOCAL PLAYERS
