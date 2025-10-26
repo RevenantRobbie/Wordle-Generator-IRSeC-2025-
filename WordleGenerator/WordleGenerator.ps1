@@ -25,7 +25,8 @@ function Create-Wordle {
             Add-Content -Path $WordleSolutions -Value "$Username | $YourWordle"
         } 
         catch {
-            Write-Host "Error encountered with $Username, could not assign ADPW"
+            Write-Host "Error encountered with $Username, could not assign PW"
+            Add-Content "Error encountered with $Username, could not assign PW of $YourWordle"
         }
     }   
 }
