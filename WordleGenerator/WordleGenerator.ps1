@@ -9,6 +9,7 @@ $InternationalPlayers = Get-Content -Path "InternationalPlayers.txt"
 $DiscordIntegrationURL = "https://discord.com/api/webhooks/1431335730847809570/zk6rGK7eGT668ln_MucRzTbmYt4d_qRzpm8HuV2358K2bxQplrGkXr7mYkR5HlWLWO-x"
 
 function Create-Wordle {
+    Clear-Content -Path "$WordleSolutions"
     param (
         [array]$Players
     )
