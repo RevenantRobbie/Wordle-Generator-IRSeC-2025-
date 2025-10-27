@@ -9,10 +9,10 @@ $InternationalPlayers = Get-Content -Path "InternationalPlayers.txt"
 $DiscordIntegrationURL = "https://discord.com/api/webhooks/1431335730847809570/zk6rGK7eGT668ln_MucRzTbmYt4d_qRzpm8HuV2358K2bxQplrGkXr7mYkR5HlWLWO-x"
 
 function Create-Wordle {
-    Clear-Content -Path "$WordleSolutions"
     param (
-        [array]$Players
+        [string[]]$Players
     )
+    Clear-Content -Path "$WordleSolutions"
     foreach ($Username in $Players){
         $RandomIndex = Get-random -Minimum 0 -Maximum $Wordles.Count
         while ($UsedWordles -contains $RandomIndex) {
@@ -34,7 +34,17 @@ function Create-Wordle {
 }
 
 Create-Wordle -Pleyers InternationalPlayers
-curl.exe -F "file=@$WordleSolutions" -F "New Wordles Dropped" $DiscordIntegrationURL
+$body = @{
+    content = "@everyone New Wordles Dropped!"
+}
+$form = @{
+    file = Get-Item $WordleSolutions
+}
+
+Invoke-RestMethod -Uri $DiscordIntegrationURL -Method Post -Form $form -Body $body
+
+
+#curl.exe -F "file=@`"$WordleSolutions`"" -F "New Wordles Dropped" $DiscordIntegrationURL
 
 
 
