@@ -53,6 +53,9 @@ $content.Add($fileContent, "file", [System.IO.Path]::GetFileName($WordleSolution
 $response = $client.PostAsync($DiscordIntegrationURL, $content).Result
 Write-Host "Status: $($response.StatusCode)"
 
+$fileStream.Dispose()
+$client.Dispose()
+
 # $body = @{
 #     content = "@everyone New Wordles Dropped!"
 # }
