@@ -37,7 +37,7 @@ Create-Wordle -Pleyers InternationalPlayers
 $body = @{
     content = "@everyone New Wordles Dropped!"
 }
-$form = @{
+$Form = @{
     file = Get-Item $WordleSolutions
 }
 
