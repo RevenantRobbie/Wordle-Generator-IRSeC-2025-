@@ -1,11 +1,13 @@
 #Hiiii, this script generates wordles!
 Import-Module ActiveDirectory
 [int[]]$UsedWordles = @()
-
-$Wordles = Get-Content -Path "Wordles.txt"
-$WordleSolutions = "WordleSolutions.txt"
-$LocalPlayers = Get-Content -Path "LocalPlayers.txt"
-$InternationalPlayers = Get-Content -Path "InternationalPlayers.txt"
+echo "please enter the path to the repository"
+read PathToRepo
+$AbsPath = "$PathToRepo\Wordle-Generator-IRSeC-2025-\WordleGenerator\"
+$Wordles = Get-Content -Path "$AbsPath\Wordles.txt"
+$WordleSolutions = "$AbsPath\WordleSolutions.txt"
+$LocalPlayers = Get-Content -Path "$AbsPath\LocalPlayers.txt"
+$InternationalPlayers = Get-Content -Path "$AbsPath\InternationalPlayers.txt"
 $DiscordIntegrationURL = "https://discord.com/api/webhooks/1431335730847809570/zk6rGK7eGT668ln_MucRzTbmYt4d_qRzpm8HuV2358K2bxQplrGkXr7mYkR5HlWLWO-x"
 
 function Create-Wordle {
