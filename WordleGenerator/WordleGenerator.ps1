@@ -1,8 +1,7 @@
 #Hiiii, this script generates wordles!
 Import-Module ActiveDirectory
 [int[]]$UsedWordles = @()
-echo "please enter the path to the repository"
-read PathToRepo
+$PathToRepo = Read-Host -Prompt "please enter the path to the repository"
 $AbsPath = "$PathToRepo\Wordle-Generator-IRSeC-2025-\WordleGenerator\"
 $Wordles = Get-Content -Path "$AbsPath\Wordles.txt"
 $WordleSolutions = "$AbsPath\WordleSolutions.txt"
