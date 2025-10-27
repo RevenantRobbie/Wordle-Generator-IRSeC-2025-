@@ -37,11 +37,11 @@ Create-Wordle -Pleyers InternationalPlayers
 $body = @{
     content = "@everyone New Wordles Dropped!"
 }
-$Form = @{
+$form = @{
     file = Get-Item $WordleSolutions
 }
 
-Invoke-RestMethod -Uri $DiscordIntegrationURL -Method Post -Form $form -Body $body
+Invoke-RestMethod -Uri $DiscordIntegrationURL -Method Post -Form $Form -Body $body
 
 
 #curl.exe -F "file=@`"$WordleSolutions`"" -F "New Wordles Dropped" $DiscordIntegrationURL
