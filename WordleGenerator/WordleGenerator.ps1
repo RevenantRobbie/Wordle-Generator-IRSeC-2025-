@@ -35,7 +35,7 @@ function Create-Wordle {
 
 Create-Wordle -Pleyers InternationalPlayers
 #fuck this shit
-$message = "@everyone New Wordles Dropped!"
+$message = "testing:"
 
 Add-Type -AssemblyName System.Net.Http
 
