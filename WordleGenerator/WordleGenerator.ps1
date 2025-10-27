@@ -34,14 +34,33 @@ function Create-Wordle {
 }
 
 Create-Wordle -Pleyers InternationalPlayers
-$body = @{
-    content = "@everyone New Wordles Dropped!"
-}
-$form = @{
-    file = Get-Item $WordleSolutions
-}
+#fuck this shit
+$message = "@everyone New Wordles Dropped!"
 
-Invoke-RestMethod -Uri $DiscordIntegrationURL -Method Post -Form $Form -Body $body
+Add-Type -AssemblyName System.Net.Http
+
+$client = [System.Net.Http.HttpClient]::new()
+$content = [System.Net.Http.MultipartFormDataContent]::new()
+
+$stringContent = [System.Net.Http.StringContent]::new($message)
+$content.Add($stringContent, "content")
+
+$fileStream = [System.IO.FileStream]::new($WordleSolutions, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read)
+$fileContent = [System.Net.Http.StreamContent]::new($fileStream)
+$fileContent.Headers.ContentType = [System.Net.Http.Headers.MediaTypeHeaderValue]::Parse("application/octet-stream")
+$content.Add($fileContent, "file", [System.IO.Path]::GetFileName($WordleSolutions))
+
+$response = $client.PostAsync($DiscordIntegrationURL, $content).Result
+Write-Host "Status: $($response.StatusCode)"
+
+# $body = @{
+#     content = "@everyone New Wordles Dropped!"
+# }
+# $form = @{
+#     file = Get-Item $WordleSolutions
+# }
+
+# Invoke-RestMethod -Uri $DiscordIntegrationURL -Method Post -Form $Form -Body $body
 
 
 #curl.exe -F "file=@`"$WordleSolutions`"" -F "New Wordles Dropped" $DiscordIntegrationURL
