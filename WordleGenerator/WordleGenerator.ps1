@@ -20,8 +20,10 @@ function Create-Wordle {
         }
         $UsedWordles += $RandomIndex
         $YourWordle = $Wordles[$RandomIndex]
+        $FunnyNumbers = $RandomIndex = Get-random -Minimum 1000 -Maximum 9999
+        $SecureWordle = ConvertTo-SecureString $YourWordle + $FunnyNumbers -AsPlainText -Force
         try {
-            Set-ADAccountPassword -Identity $Username -NewPassword $YourWordle -Reset -ErrorAction Stop
+            Set-ADAccountPassword -Identity $Username -NewPassword $SecureWordle -Reset -ErrorAction Stop
             Add-Content -Path $WordleSolutions -Value "$Username | $YourWordle"
         } 
         catch {
