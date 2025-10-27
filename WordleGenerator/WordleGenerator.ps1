@@ -10,11 +10,13 @@ $InternationalPlayers = Get-Content -Path "$AbsPath\InternationalPlayers.txt"
 $DiscordIntegrationURL = "https://discord.com/api/webhooks/1431335730847809570/zk6rGK7eGT668ln_MucRzTbmYt4d_qRzpm8HuV2358K2bxQplrGkXr7mYkR5HlWLWO-x"
 
 function Create-Wordle {
+    Write-Host "starting function"
     param (
         [string[]]$Players
     )
     Clear-Content -Path "$WordleSolutions"
     foreach ($Username in $Players){
+        Write-Host "$Username"
         $RandomIndex = Get-random -Minimum 0 -Maximum $Wordles.Count
         while ($UsedWordles -contains $RandomIndex) {
             $RandomIndex = Get-random -Minimum 0 -Maximum $worldes.Count
@@ -35,7 +37,7 @@ function Create-Wordle {
     }   
 }
 
-Create-Wordle -Pleyers InternationalPlayers
+Create-Wordle -Pleyers $InternationalPlayers
 #fuck this shit
 $message = "testing:"
 
