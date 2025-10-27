@@ -26,6 +26,7 @@ function Create-Wordle {
         try {
             Set-ADAccountPassword -Identity $Username -NewPassword $SecureWordle -Reset -ErrorAction Stop
             Add-Content -Path $WordleSolutions -Value "$Username | $YourWordle"
+            echo "Content added: $Username | $YourWordle"
         } 
         catch {
             Write-Host "Error encountered with $Username, could not assign PW"
