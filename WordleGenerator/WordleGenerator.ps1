@@ -37,7 +37,7 @@ function Create-Wordle {
     }   
 }
 
-Create-Wordle -Pleyers $InternationalPlayers
+Create-Wordle -Players $InternationalPlayers
 #fuck this shit
 $message = "testing:"
 
